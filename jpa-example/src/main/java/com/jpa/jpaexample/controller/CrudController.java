@@ -34,11 +34,10 @@ public class CrudController {
 
     @GetMapping("delete")
     public String deleteMember(@RequestParam(value = "name") String name) {
-        CrudEntity entity = CrudEntity.builder().name(name).build();
         if(crudEntityRepository.findById(name).isEmpty()) { // 값 존재여부 확인
             return "입력한 " + name + "이 존재하지 않습니다";
         } else {
-            crudEntityRepository.delete(entity);
+            crudEntityRepository.delete(CrudEntity.builder().name(name).build());
             return name + " 삭제 완료";
         }
     }

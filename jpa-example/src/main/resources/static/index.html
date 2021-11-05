@@ -5,9 +5,48 @@
     <title>Title</title>
 </head>
 <body>
-    <strong>----------</strong><br>
+    <strong>-----------------</strong><br>
     <strong>HOW TO USE</strong><br>
-    <strong>----------</strong><br>
+    <strong>-----------------</strong><br>
+
+    <strong>해당 프로젝트는 GET 방식으로 JPA를 사용하는 방법 예제입니다.</strong><br>
+    <strong>(세팅에 따라 주소와 포트 번호가 다를 수 있습니다!)</strong><br><br>
+
+    <strong>1. 조회(select)</strong><br>
+    사용 예제 : http://localhost:8080/test/search <br>
+    출력 값 : [CrudEntity(name=철수, age=20), CrudEntity(name=테스트, age=30)] <br><br>
+
+    <strong>2. 파라미터를 사용하는 조회(entityManager.createQuery 사용)</strong><br>
+    사용 예제 : http://localhost:8080/test/searchParam?age=숫자 <br>
+    사용 쿼리 : select name from sample_member where age > :age(파라미터) <br>
+    출력 값 : [철수, 테스트] <br>
+    출력 값(없을 경우) : [] <br><br>
+
+    <strong>3. 파라미터를 사용하는 조회(Repository.java 에 @Query 사용)</strong><br>
+    사용 예제 : http://localhost:8080/test/searchParamRepo?name=값 <br>
+    사용 쿼리 : select name, age from sample_member where name = :name(파라미터) <br>
+    출력 값(있을 경우) : [CrudEntity(name=테스트, age=30)] <br>
+    출력 값(없을 경우) : [] <br><br>
+
+    <strong>4. 삽입(insert)</strong><br>
+    사용 예제 : http://localhost:8080/test/insert?name=값&age=숫자 <br>
+    출력 값(성공 시) : 이름 : 테스트20 나이 : 10으로 추가 되었습니다 <br>
+    출력 값(실패 시) : 동일한 이름이 이미 있습니다 <br>
+    기타 : 이미 Name에 해당되는 값이 테이블에 있으면 삽입이 되지 않습니다 <br><br>
+
+    <strong>5. 수정(update)</strong><br>
+    사용 예제 : http://localhost:8080/test/update?name=값&age=숫자 <br>
+    출력 값(성공 시) : 테스트20의 나이를 20로 변경 완료 <br>
+    출력 값(실패 시) : 입력한 테스트930이 존재하지 않습니다 <br>
+    기타 : Name에 해당되는 값이 테이블에 없으면 수정이 되지 않습니다 <br><br>
+
+    <strong>6. 삭제(delete)</strong><br>
+    사용 예제 : http://localhost:8080/test/delete?name=값 <br>
+    출력 값(성공 시) : 테스트20 삭제 완료 <br>
+    출력 값(실패 시) : 입력한 테스트999이 존재하지 않습니다 <br>
+    기타 : Name에 해당되는 값이 테이블에 없으면 삭제가 되지 않습니다 <br><br>
+
+    <strong>문의 : https://wakestand.tistory.com/guestbook</strong>
 
 </body>
 </html>

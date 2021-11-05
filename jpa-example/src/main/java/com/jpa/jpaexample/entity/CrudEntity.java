@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name="tb2")
+@Entity(name="sample_member")
 public class CrudEntity {
 
     @Id

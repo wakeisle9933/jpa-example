@@ -26,7 +26,7 @@ IP주소 > localhost
 유저명 > root
 유저비밀번호 > 1234
 
-3. 테스트를 위해 반드시 MySQL에 아래 테이블을 생성해야 합니다.
+3. 테스트를 위해 반드시 MySQL에 아래 테이블을 생성해야 합니다. (world 는 스키마 명에 따라 변경)
 CREATE TABLE world.sample_member (
 name varchar(100) NOT NULL,
 age INT NOT NULL,

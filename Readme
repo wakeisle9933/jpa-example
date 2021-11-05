@@ -31,3 +31,5 @@ CONSTRAINT sample_member_pk PRIMARY KEY (name)
 ) 
 
 3. 프로젝트 구동은 src > main > java > JpaExampleApplication를 Run 시켜주시면 됩니다.
+
+4. master branch는 완성되어 있는 branch이고 empty branch는 껍데기만 있는 branch(연습용) 입니다 

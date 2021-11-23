@@ -1,9 +1,6 @@
 package com.jpa.jpaexample.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +11,8 @@ import javax.persistence.Table;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
+@Getter
 @Entity(name="sample_member")
 public class CrudEntity {
 

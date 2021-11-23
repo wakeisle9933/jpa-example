@@ -2,7 +2,9 @@ package com.jpa.jpaexample.controller;
 
 import com.jpa.jpaexample.entity.CrudEntity;
 import com.jpa.jpaexample.repository.CrudEntityRepository;
+import com.jpa.jpaexample.service.CrudService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,6 +22,9 @@ import java.util.List;
 public class CrudController {
 
     private final CrudEntityRepository crudEntityRepository;
+
+    @Autowired
+    private CrudService crudService;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -69,6 +76,11 @@ public class CrudController {
     @GetMapping("searchParamRepo")
     public String searchParamRepoMember(@RequestParam(value = "name") String name) {
         return crudEntityRepository.searchParamRepo(name).toString();
+    }
+
+    @GetMapping("newSearch")
+    public List<CrudEntity> newSearch() {
+        return crudService.newSearch();
     }
 
 }

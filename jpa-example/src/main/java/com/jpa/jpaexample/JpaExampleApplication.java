@@ -10,6 +10,7 @@ public class JpaExampleApplication {
 		SpringApplication.run(JpaExampleApplication.class, args);
 
 
+
 	}
 
 }

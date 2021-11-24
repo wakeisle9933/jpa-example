@@ -1,6 +1,6 @@
 package com.jpa.jpaexample.controller;
 
-import com.jpa.jpaexample.entity.CrudEntity;
+import com.jpa.jpaexample.domain.CrudEntity;
 import com.jpa.jpaexample.repository.CrudEntityRepository;
 import com.jpa.jpaexample.service.CrudService;
 import lombok.RequiredArgsConstructor;
@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,58 +27,34 @@ public class CrudController {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @GetMapping("update")
-    public String updateMember(@RequestParam(value = "name") String name, @RequestParam(value = "age") int age) {
-        if(crudEntityRepository.findById(name).isEmpty()) { // 값 존재여부 확인
-            return "입력한 " + name + "이 존재하지 않습니다";
-        } else {
-            crudEntityRepository.save(CrudEntity.builder().name(name).age(age).build());
-            return name + "의 나이를 " + age + "로 변경 완료";
-        }
+    @GetMapping("searchAll")
+    public List<CrudEntity> searchAll() {
+        return crudService.searchAll();
     }
 
-    @GetMapping("delete")
-    public String deleteMember(@RequestParam(value = "name") String name) {
-        if(crudEntityRepository.findById(name).isEmpty()) { // 값 존재여부 확인
-            return "입력한 " + name + "이 존재하지 않습니다";
-        } else {
-            crudEntityRepository.delete(CrudEntity.builder().name(name).build());
-            return name + " 삭제 완료";
-        }
+    @GetMapping("searchParam")
+    public List<CrudEntity> searchParam(@RequestParam(value = "age") int age) {
+        return crudService.searchParam(age);
+    }
+
+    @GetMapping("searchParamRepo")
+    public List<CrudEntity> searchParamRepo(@RequestParam(value = "name") String name) {
+        return crudService.searchParamRepo(name);
     }
 
     @GetMapping("insert")
     public String insertMember(@RequestParam(value = "name") String name, @RequestParam(value = "age") int age) {
-        if(crudEntityRepository.findById(name).isPresent()) {
-            return "동일한 이름이 이미 있습니다";
-        } else {
-            CrudEntity entity = CrudEntity.builder().name(name).age(age).build();
-            crudEntityRepository.save(entity);
-            return "이름 : " + name + " 나이 : " + age + "으로 추가 되었습니다";
-        }
+        return crudService.insertMember(name, age);
     }
 
-    @GetMapping("search")
-    public String searchAllMember() {
-        return crudEntityRepository.findAll().toString();
+    @GetMapping("update")
+    public String updateMember(@RequestParam(value = "name") String name, @RequestParam(value = "age") int age) {
+        return crudService.updateMember(name, age);
     }
 
-    @GetMapping("searchParam")
-    public String searchParamMember(@RequestParam(value = "age") int age) {
-        List resultList = entityManager.createQuery("select name from sample_member where age > :age")
-                                       .setParameter("age", age)
-                                       .getResultList();
-        return resultList.toString();
-    }
-
-    @GetMapping("searchParamRepo")
-    public String searchParamRepoMember(@RequestParam(value = "name") String name) {
-        return crudEntityRepository.searchParamRepo(name).toString();
-    }
-
-    @GetMapping("newSearch")
-    public List<CrudEntity> newSearch() {
-        return crudService.newSearch();
+    @GetMapping("delete")
+    public String deleteMember(@RequestParam(value = "name") String name) {
+        return crudService.deleteMember(name);
     }
 
 }

@@ -1,6 +1,6 @@
 package com.jpa.jpaexample.repository;
 
-import com.jpa.jpaexample.entity.CrudEntity;
+import com.jpa.jpaexample.domain.CrudEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

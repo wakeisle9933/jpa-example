@@ -1,4 +1,4 @@
-package com.jpa.jpaexample.entity;
+package com.jpa.jpaexample.domain;
 
 import lombok.*;
 
@@ -13,7 +13,8 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Setter
 @Getter
-@Entity(name="sample_member")
+@Entity(name = "sample_member")
+@Table(name = "sample_member")
 public class CrudEntity {
 
     @Id

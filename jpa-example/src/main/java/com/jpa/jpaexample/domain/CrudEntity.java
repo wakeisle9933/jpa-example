@@ -1,9 +1,6 @@
-package com.jpa.jpaexample.entity;
+package com.jpa.jpaexample.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +11,10 @@ import javax.persistence.Table;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name="tb2")
+@Setter
+@Getter
+@Entity(name = "sample_member")
+@Table(name = "sample_member")
 public class CrudEntity {
 
     @Id

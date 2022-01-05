@@ -1,0 +1,39 @@
+----------
+README
+----------
+
+1. springboot 세팅 정보는 base_setting.png 파일을 확인해주시면 됩니다.
+
+2. Git에서 해당 프로젝트를 내려받은 후 본인의 Local Server에 적용하려면
+'반드시' MySQL이 설치되어 있어야 하고 application.properties 파일의 아래 설정을 변경해야 합니다.
+[application.properties 파일 위치 : src > main > resources > application.properties]
+
+# DB URL
+spring.datasource.url=jdbc:mysql://IP주소:포트번호/스키마명?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul
+
+# DB username
+spring.datasource.username=유저명
+
+# DB password
+spring.datasource.password=유저비밀번호
+
+한글로 입력된 부분을 본인 설정에 맞춰 변경해주시면 됩니다
+다만 설치 시 기본값으로 설치했을 경우 세팅은 아래와 같습니다.
+IP주소 > localhost
+포트번호 > 3306
+스키마명 > world
+유저명 > root
+유저비밀번호 > 1234
+
+3. 테스트를 위해 반드시 MySQL에 아래 테이블을 생성해야 합니다. (world 는 스키마 명에 따라 변경)
+CREATE TABLE world.sample_member (
+name varchar(100) NOT NULL,
+age INT NOT NULL,
+CONSTRAINT sample_member_pk PRIMARY KEY (name)
+) 
+
+4. 프로젝트 구동은 src > main > java > JpaExampleApplication를 Run 시켜주시면 됩니다.
+
+5. master branch는 완성되어 있는 branch이고 empty branch는 껍데기만 있는 branch(연습용) 입니다.
+
+6. 서버 구동 후 사용방법은 src > main > resources > static > index.html 을 확인해 주시면 됩니다
